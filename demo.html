@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Energy Advisor — Savings Widget</title>
+<meta name="description" content="Demo page for the Home Energy Advisor embeddable widget.">
+<style>
+  body { font-family: system-ui, sans-serif; background: #f5f7fa; margin: 2rem; }
+  #mount { max-width: 480px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+  .hea-form label { display: block; margin-bottom: .75rem; font-size: .9rem; }
+  .hea-form input, .hea-form select { display: block; width: 100%; padding: .5rem; margin-top: .25rem; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+  .hea-submit { background: #0b6b3a; color: #fff; border: 0; padding: .6rem 1rem; border-radius: 6px; cursor: pointer; width: 100%; }
+  .hea-field-error { color: #b00020; font-size: .78rem; }
+  .hea-state-banner { padding: .6rem; border-radius: 6px; margin: .75rem 0; font-size: .85rem; }
+  .hea-state-loading { background: #eef4ff; color: #1a4fa0; }
+  .hea-state-error { background: #fdecea; color: #b00020; }
+  .hea-state-empty { background: #f0f0f0; color: #555; }
+  .hea-plan-list li { margin-bottom: .5rem; }
+  .hea-disclaimer { font-size: .75rem; color: #777; }
+  .hea-offer-link { display: inline-block; margin: .25rem .5rem .25rem 0; padding: .45rem .8rem; border-radius: 6px; background: #0b6b3a; color: #fff; text-decoration: none; font-size: .85rem; }
+  .hea-consent { font-size: .7rem; color: #888; }
+</style>
+</head>
+<body>
+<div id="mount"></div>
+<!-- First-party widget script served from this same site (GitHub Pages) — SRI not applicable to same-origin assets. -->
+<script src="./hea-widget.js"></script>
+<script>
+  HomeEnergyAdvisor.mount(document.getElementById('mount'), {
+    apiBase: 'http://localhost:8001',
+    apiToken: 'demo-token',
+    branding: { name: 'Demo Publisher' },
+    onConversion: function (e) { console.log('conversion', e); }
+  });
+</script>
+</body>
+</html>
