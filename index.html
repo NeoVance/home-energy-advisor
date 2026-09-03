@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Energy Advisor — Embeddable Savings Widget for Publishers</title>
+<meta name="description" content="Add an interactive home energy savings calculator to your site in one script tag. Ranked savings plans from public NREL/DOE/EIA rate data, monetized with affiliate and lead-gen links.">
+<style>
+  :root { --green:#0b6b3a; --ink:#1a2330; --muted:#5a6675; --bg:#f5f7fa; }
+  * { box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,Segoe UI,sans-serif; margin:0; color:var(--ink); background:var(--bg); line-height:1.6; }
+  header { background:linear-gradient(135deg,#0b6b3a,#0e8a4b); color:#fff; padding:3.5rem 1.5rem 4rem; text-align:center; }
+  header h1 { font-size:clamp(1.6rem,4vw,2.6rem); margin:0 0 .5rem; }
+  header p { font-size:1.1rem; opacity:.92; max-width:640px; margin:0 auto; }
+  .badge { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.35); padding:.25rem .8rem; border-radius:999px; font-size:.8rem; margin-bottom:1rem; letter-spacing:.05em; }
+  main { max-width:960px; margin:-2rem auto 0; padding:0 1.5rem 4rem; }
+  section { background:#fff; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.07); padding:2rem; margin-bottom:2rem; }
+  h2 { margin-top:0; font-size:1.4rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.25rem; }
+  .card { background:var(--bg); border-radius:10px; padding:1.25rem; }
+  .card h3 { margin:.2rem 0 .4rem; font-size:1rem; color:var(--green); }
+  .card p { margin:0; font-size:.9rem; color:var(--muted); }
+  pre { background:#0f1720; color:#d7e3ee; padding:1.1rem 1.25rem; border-radius:10px; overflow-x:auto; font-size:.85rem; line-height:1.5; position:relative; }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .copy-btn { position:absolute; top:.6rem; right:.6rem; background:#1f3d2c; color:#9fd8b4; border:1px solid #2f5c40; border-radius:6px; padding:.3rem .7rem; cursor:pointer; font-size:.75rem; }
+  .copy-btn:hover { background:#2a5a3d; }
+  #widget-mount { max-width:480px; margin:0 auto; background:#fff; border:1px solid #e3e8ee; border-radius:12px; padding:1.5rem; }
+  .hea-form label { display:block; margin-bottom:.75rem; font-size:.9rem; }
+  .hea-form input, .hea-form select { display:block; width:100%; padding:.5rem; margin-top:.25rem; border:1px solid #ccc; border-radius:6px; }
+  .hea-submit { background:var(--green); color:#fff; border:0; padding:.6rem 1rem; border-radius:6px; cursor:pointer; width:100%; }
+  .hea-field-error { color:#b00020; font-size:.78rem; }
+  .hea-state-banner { padding:.6rem; border-radius:6px; margin:.75rem 0; font-size:.85rem; }
+  .hea-state-loading { background:#eef4ff; color:#1a4fa0; }
+  .hea-state-error { background:#fdecea; color:#b00020; }
+  .hea-state-empty { background:#f0f0f0; color:#555; }
+  .hea-plan-list li { margin-bottom:.5rem; }
+  .hea-disclaimer { font-size:.75rem; color:#777; }
+  .hea-offer-link { display:inline-block; margin:.25rem .5rem .25rem 0; padding:.45rem .8rem; border-radius:6px; background:var(--green); color:#fff; text-decoration:none; font-size:.85rem; }
+  .hea-consent { font-size:.7rem; color:#888; }
+  .demo-note { text-align:center; font-size:.8rem; color:var(--muted); margin-top:.75rem; }
+  table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  th,td { text-align:left; padding:.6rem .75rem; border-bottom:1px solid #e3e8ee; }
+  th { color:var(--muted); font-weight:600; }
+  footer { text-align:center; color:var(--muted); font-size:.85rem; padding:0 1.5rem 3rem; }
+  a { color:var(--green); }
+  @media (max-width:600px){ section{padding:1.25rem;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">FOR PUBLISHERS &amp; CONTENT SITES</div>
+  <h1>Turn your traffic into energy-savings engagement — and revenue.</h1>
+  <p>Home Energy Advisor is a drop-in savings calculator your readers actually use: they enter their ZIP and home basics, and get a ranked, data-grounded savings plan — with every qualifying action wrapped in affiliate and lead-gen links.</p>
+</header>
+
+<main>
+
+<section id="value">
+  <h2>Why publishers add it</h2>
+  <div class="grid">
+    <div class="card"><h3>One script tag</h3><p>No backend work, no maintenance. Paste the embed, style the branding, done in under five minutes.</p></div>
+    <div class="card"><h3>Engagement that converts</h3><p>Interactive calculators hold readers 3–5× longer than static articles. Savings plans give them a reason to click through.</p></div>
+    <div class="card"><h3>Grounded in public data</h3><p>Every dollar figure is computed from version-stamped NREL/DOE/EIA rate tables — never invented. Stale data is visibly flagged.</p></div>
+    <div class="card"><h3>Revenue built in</h3><p>Affiliate links (thermostats, smart-home) plus lead-gen for heat pumps and solar at $30–200 per qualified lead. Per-site earnings dashboard included.</p></div>
+  </div>
+</section>
+
+<section id="preview">
+  <h2>Live preview</h2>
+  <p style="color:var(--muted);font-size:.92rem">This is the real widget, exactly as your readers will see it. The demo below runs against a sandbox API and shows clearly-labeled demo data.</p>
+  <div id="widget-mount"></div>
+  <p class="demo-note">Sandbox mode — responses use labeled demo data, not live rate tables.</p>
+</section>
+
+<section id="embed">
+  <h2>Copy-paste embed code</h2>
+  <p>Drop this where you want the widget to appear. Configure <code>apiBase</code> to your provisioned endpoint (we'll send it in your welcome email), and set <code>branding.name</code> to your site.</p>
+  <pre><button class="copy-btn" onclick="copyEmbed(this)">Copy</button><code id="embed-code">&lt;!-- Home Energy Advisor widget --&gt;
+&lt;div id=&quot;home-energy-advisor&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;https://neovance.github.io/home-energy-advisor/hea-widget.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  HomeEnergyAdvisor.mount(document.getElementById('home-energy-advisor'), {
+    apiBase: 'https://api.homeenergyadvisor.example',  // provided on signup
+    apiToken: 'YOUR_PUBLISHNER_TOKEN',
+    branding: { name: 'Your Site Name' },
+    onConversion: function (e) { /* your analytics */ }
+  });
+&lt;/script&gt;</code></pre>
+  <table>
+    <tr><th>Option</th><th>Required</th><th>Description</th></tr>
+    <tr><td><code>apiBase</code></td><td>Yes</td><td>Provisioned API endpoint (we supply it on signup)</td></tr>
+    <tr><td><code>apiToken</code></td><td>Yes</td><td>Your per-site publisher token</td></tr>
+    <tr><td><code>branding.name</code></td><td>No</td><td>Site name shown in the widget header</td></tr>
+    <tr><td><code>onConversion</code></td><td>No</td><td>Callback fired on offer clicks for your analytics</td></tr>
+  </table>
+</section>
+
+<section id="pricing">
+  <h2>Simple pricing</h2>
+  <table>
+    <tr><th>Tier</th><th>Monthly traffic</th><th>Price</th></tr>
+    <tr><td>Starter</td><td>Up to 50k pageviews</td><td>$29/mo</td></tr>
+    <tr><td>Growth</td><td>Up to 250k pageviews</td><td>$49/mo</td></tr>
+    <tr><td>Pro</td><td>Unlimited</td><td>$79/mo</td></tr>
+  </table>
+  <p style="font-size:.85rem;color:var(--muted)">All tiers include the earnings dashboard, rate-table quarterly refreshes, and branding config. Lead-gen and affiliate revenue is yours — we never take a cut of your commissions.</p>
+</section>
+
+</main>
+
+<footer>
+  Home Energy Advisor — embeddable savings calculator for home, climate &amp; utility content sites.<br>
+  Savings figures computed from public NREL/DOE/EIA rate data. Demo responses are labeled and not live estimates.
+</footer>
+
+<script src="https://neovance.github.io/home-energy-advisor/hea-widget.js"></script>
+<script>
+  HomeEnergyAdvisor.mount(document.getElementById('widget-mount'), {
+    apiBase: 'http://localhost:8001',
+    apiToken: 'demo-token',
+    branding: { name: 'Home Energy Advisor (demo)' },
+    onConversion: function (e) { console.log('conversion', e); }
+  });
+</script>
+</body>
+</html>
